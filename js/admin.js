@@ -1,6 +1,6 @@
 (function () {
 "use strict";
-
+alert("admin: script loaded");
 var STORAGE_KEY = 'physio_clinic_config';
 var SESSION_KEY = 'physio_admin_session';
 var DEFAULT_PASSWORD = 'admin123';
@@ -370,13 +370,15 @@ function collectFormData() {
 
 function showPanel() {
 
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('admin-panel').style.display = 'block';
-
+    var loginScreen = document.getElementById('login-screen');
+    var adminPanel = document.getElementById('admin-panel');
+    if(!loginScreen || !adminPanel) return;
+    loginScreen.style.display = 'none';
+    adminPanel.style.display = 'block';
     var c = getConfig();
 
     var form = document.getElementById('admin-form');
-
+    if(!form) return;
     fillFlatFields(form, c);
     if(c.about && c.about.paragraphs) {
         var p0 = form.querySelector('[name="about.paragraphs[0]"]');
@@ -391,13 +393,20 @@ function showPanel() {
             if (el) el.value = c.treatmentStrategy.highlights[i] || '';
         });
     }
-    renderDoctors(document.getElementById('doctors-list'), c.doctors);
-    renderServiceList(document.getElementById('physio-list'), c.services && c.services.physiotherapy, ['title', 'description', 'link']);
-    renderServiceList(document.getElementById('chiro-list'), c.services && c.services.chiropractic, ['title', 'description', 'link']);
-    renderEquipment(document.getElementById('equipment-list'), c.equipment);
-    renderReviews(document.getElementById('reviews-list'), c.reviews);
-    renderLocations(document.getElementById('locations-list'), c.locations);
-    renderGallery(document.getElementById('gallery-list'), c.gallery);
+    var doctorsList = document.getElementById('doctors-list');
+    var physioList = document.getElementById('physio-list');
+    var chiroList = document.getElementById('chiro-list');
+    var equipmentList = document.getElementById('equipment-list');
+    var reviewsList = document.getElementById('reviews-list');
+    var locationsList = document.getElementById('locations-list');
+    var galleryList = document.getElementById('gallery-list');
+    if(doctorsList) renderDoctors(doctorsList, c.doctors || []);
+    if(physioList) renderServiceList(physioList, (c.services && c.services.physiotherapy) || [], ['title', 'description', 'link']);
+    if(chiroList) renderServiceList(chiroList, (c.services && c.services.chiropractic) || [], ['title', 'description', 'link']);
+    if(equipmentList) renderEquipment(equipmentList, c.equipment || []);
+    if(reviewsList) renderReviews(reviewsList, c.reviews || []);
+    if(locationsList) renderLocations(locationsList, c.locations || []);
+    if(galleryList) renderGallery(galleryList, c.gallery || []);
 
     bindAddRemove();
 }
@@ -498,59 +507,81 @@ function init() {
             return;
         }
 
-        document.getElementById('login-screen').style.display = 'flex';
+        var loginScreen = document.getElementById('login-screen');
+        if(loginScreen) loginScreen.style.display = 'flex';
+        var form = document.getElementById('login-form');
+        if(!form) return;
 
-        document.getElementById('login-form').onsubmit = function (e) {
+        form.onsubmit = function (e) {
             e.preventDefault();
 
-            var pwd = document.getElementById('admin-password').value;
+            var pwdEl = document.getElementById('admin-password');
+            var pwd = pwdEl ? pwdEl.value : '';
             var errEl = document.getElementById('login-error');
-            if (pwd === getAdminPassword()) {
-
+            var expected = getAdminPassword();
+            if (pwd === expected) {
                 setLoggedIn(true);
-                errEl.style.display = 'none';
+                if(errEl) errEl.style.display = 'none';
+                try { showPanel(); } catch (err) { if (errEl) {errEl.textContent = 'Error Loading panel.'; errEl.style.display = 'block'; } }
 
-                showPanel();
 
             } else {
 
-                errEl.style.display = 'block';
+                if(errEl) { errEl.style.display = 'block'; errEl.textContent = 'Wrong password.'; }
             }
         };
+    }).catch(function () {
+        var loginScreen = document.getElementById('login-screen');
+        if(loginScreen) = loginScreen.style.display = 'flex';
     });
 
-    document.getElementById('btn-save').onclick = saveConfig;
-    document.getElementById('btn-download').onclick = downloadConfig;
-    document.getElementById('btn-logout').onclick = function () {
+    var btnSave = document.getElementById('btn-save');
+    if(btnSave) btnSave.onclick = saveConfig;
+
+    var btnDownload = document.getElementById('btn-download');
+    if(btnDownload) btnDownload.onclick = downloadConfig;
+    var btnLogout = document.getElementById('btn-logout');
+    if(btnLogout) btnLogout.onclick = function () {
         setLoggedIn(false);
-        document.getElementById('admin-panel').style.display = 'none';
-        document.getElementById('login-screen').style.display = 'flex';
-        document.getElementById('admin-password').value = '';
-        document.getElementById('login-error').style.display = 'none';
+        var ap = document.getElementById('admin-panel');
+        if(ap) ap.style.display = 'none';
+        var ls = document.getElementById('login-screen');
+        if(ls) ls.style.display = 'flex';
+        var pw = document.getElementById('admin-password');
+        if(pw) pw.value = '';
+        var err = document.getElementById('login-error');
+        if(err) err.style.display = 'none';
     };
-    document.getElementById('btn-add-doctor').onclick = function () {
+    var btnAddDoctor = document.getElementById('btn-add-doctor');
+    if(btnAddDoctor) btnAddDoctor.onclick = function () {
     addBlock('doctors-list', { id: String(Date.now()), name: '', role: '', experience: '', bio: '', image: ''}, ['id', 'name', 'role', 'experience', 'bio', 'image'], renderDoctors);
     };
-    document.getElementById('btn-add-physio').onclick = function () {
+    var btnAddPhysio = document.getElementById('btn-add-physio');
+    if(btnAddPhysio) btnAddPhysio.onclick = function () {
     addBlock('physio-list', { title: '', description: '', link: '#' }, ['title', 'description', 'link'], function (el, arr) { renderService(el, arr, ['title', 'description', 'link']); });
     };
-    document.getElementById('btn-add-chiro').onclick = function () {
+    var btnAddChiro = document.getElementById('btn-add-chiro');
+    if(btnAddChiro) btnAddChiro.onclick = function () {
     addBlock('chiro-list', { title: '', description: '', link: '#' }, ['title', 'description', 'link'], function (el, arr) { renderService(el, arr, ['title', 'description', 'link']); });
     };
-    document.getElementById('btn-add-equipment').onclick = function () {
+    var btnAddEquipment = document.getElementById('btn-add-equipment');
+    if(btnAddEquipment) btnAddEquipment.onclick = function () {
     addBlock('equipment-list', { title: '', description: '', image: ''}, ['title', 'description', 'image'], renderEquipment);
     };
-    document.getElementById('btn-add-review').onclick = function () {
+    var btnAddReview = document.getElementById('btn-add-review');
+    if(btnAddReview) btnAddReview.onclick = function () {
     addBlock('reviews-list', { author: '', rating: 5, text: '', source: 'Google Review'}, ['author', 'rating', 'text', 'source'], renderReview);
     };
-    document.getElementById('btn-add-location').onclick = function () {
+    var btnAddLocation = document.getElementById('btn-add-location');
+    if(btnAddLocation) btnAddLocation.onclick = function () {
     addBlock('locations-list', { name: '', address: '', phone: '', hours: '', mapUrl: '', image: ''}, ['name', 'address', 'phone', 'hours', 'mapUrl', 'image'], renderLocations);
     };
-    document.getElementById('btn-add-gallery').onclick = function () {
+    var btnAddGallery = document.getElementById('btn-add-gallery');
+    if(btnAddGallery) btnAddGallery.onclick = function () {
     addBlock('gallery-list', { src: '', alt: ''}, ['src', 'alt'], renderGallery);
     };
 
-    };
+
 }
 
 function escapeAttr(s) {
