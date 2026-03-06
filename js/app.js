@@ -244,45 +244,6 @@ function renderEquipment() {
   }).join('');
 }
 
-function renderServices() {
-  var d = getData();
-
-  var physio = (d.services && d.services.physiotherapy) || [] : [];
-  var chiro = (d.services && d.services.chiropractic) || [] : [];
-
-  var phEl = document.getElementById('services-physio');
-  var chEl = document.getElementById('services-chiro');
-
-  if (phEl) {
-    phEl.innerHTML = physio.map(function (s) {
-      return (
-        '<div class="service-card">' +
-          '<h3>' + escapeHtml(s.title) + '</h3>' +
-          '<p>' + escapeHtml(s.description) + '</p>' +
-          (s.link
-            ? '<a href="' + escapeHtml(s.link) + '">Read more</a>'
-            : '') +
-        '</div>'
-      );
-    }).join('');
-  }
-
-  if (chEl) {
-    chEl.innerHTML = chiro.map(function (s) {
-      return (
-        '<div class="service-card">' +
-          '<h3>' + escapeHtml(s.title) + '</h3>' +
-          '<p>' + escapeHtml(s.description) + '</p>' +
-          (s.link
-            ? '<a href="' + escapeHtml(s.link) + '">Read more</a>'
-            : '') +
-        '</div>'
-      );
-    }).join('');
-  }
-}
-
-
 function renderEquipment() {
   var list = getData().equipment || [];
   var grid = document.getElementById('equipment-grid');
