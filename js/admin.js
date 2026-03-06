@@ -386,14 +386,14 @@ function showPanel() {
     }
 
     if(c.treatmentStrategy && c.treatmentStrategy.highlights) {
-        [0, 1, 2].forEach(function(i)) {
+        [0, 1, 2].forEach(function (i) {
             var el = form.querySelector('[name="treatmentStrategy.highlights['+i+']"]');
-            if(el) el.value = c.treatmentStrategy.highlights[i] || '';
-        }
+            if (el) el.value = c.treatmentStrategy.highlights[i] || '';
+        });
     }
     renderDoctors(document.getElementById('doctors-list'), c.doctors);
-    renderDoctors(document.getElementById('physio-list'), c.services && c.services.physiotherapy, ['title', 'description', 'link']);
-    renderDoctors(document.getElementById('chiro-list'), c.services && c.services.physiotherapy, ['title', 'description', 'link']);
+    renderServiceList(document.getElementById('physio-list'), c.services && c.services.physiotherapy, ['title', 'description', 'link']);
+    renderServiceList(document.getElementById('chiro-list'), c.services && c.services.chiropractic, ['title', 'description', 'link']);
     renderEquipment(document.getElementById('equipment-list'), c.equipment);
     renderReviews(document.getElementById('reviews-list'), c.reviews);
     renderLocations(document.getElementById('locations-list'), c.locations);
@@ -412,7 +412,7 @@ function addBlock(containerId, item, fields, renderFn) {
 
     arr.push(item || {});
 
-    renderOne(listEl, arr);
+    renderFn(listEl, arr);
 
     bindAddRemove();
 }

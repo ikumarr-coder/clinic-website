@@ -180,8 +180,8 @@ function escapeHtml(s) {
 function renderServices() {
   var d = getData();
 
-  var physio = (d.services && d.services.physiotherapy) || [] : [];
-  var chiro = (d.services && d.services.chiropractic) || [] : [];
+  var physio = (d.services && d.services.physiotherapy) || [];
+  var chiro = (d.services && d.services.chiropractic) || [];
 
   var phEl = document.getElementById('services-physio');
   var chEl = document.getElementById('services-chiro');
