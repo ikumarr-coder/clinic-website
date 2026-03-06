@@ -16,124 +16,123 @@
       return base ? base + "/" + path.replace(/^\//, "") : path;
     }*/
     function assetUrl(path) {
-      if (!path) return "";
+      if (!path) return '';
 
       // If already absolute URL
-      if (path.startsWith("http")) return path;
+      if (path.startsWith('http')) return path;
 
       // Find the script that loaded app.js
       const script = document.querySelector('script[src*="app.js"]');
-      const base = script?.src?.replace(/\/js\/app\.js$/, "") ?? null;
+      const base = (scriptEl && scriptEl.src) ? scriptEl.src.replace(/\/js\/app\.js.*$/, '') : '' ;
 
-      // Build full URL (remove leading slash safely)
-      const cleanPath = path.replace(/^\/+/, "");
-
-      return base ? `${base}/${cleanPath}` : path;
+      return base ? base + '/'+path.replace(/^\//,'') : path;
     }
 
 
     // Fallback data when config.json is not available (e.g. file://)
     var fallback = {
       developer: {
-        name: "",
-        email: "",
-        website: ""
+        name: '',
+        email: '',
+        website: ''
       },
 
       clinic: {
-        name: "Your Clinic Name",
-        phone: "Your Phone",
-        email: "your@email.com",
-        whatsapp: "",
-        address: "",
-        logo: "",
+        name: 'Your Clinic Name'"',
+        phone: 'Your Phone',
+        email: 'your@email.com',
+        whatsapp: '',
+        address: '',
+        logo: ''},
         hero: {
-          title: "We Enhance Your Recovery and Performance",
-          subtitle: "Active rehabilitation. Beyond pain relief.",
-          ctaText: "Book Appointment"
-        }
-      },
+          title: 'We Enhance Your Recovery and Performance',
+          subtitle: 'Active rehabilitation. Beyond pain relief.',
+          ctaText: 'Book Appointment'
+        },
 
       about: {
-        title: "Welcome",
-        intro: "We believe in active rehabilitation.",
+        title: 'Welcome',
+        intro: 'We believe in active rehabilitation.',
         paragraphs: [
-          "Our goal is to take you beyond pain relief.",
-          "We tailor treatment plans to your needs."
+          'Our goal is to take you beyond pain relief.',
+          'We tailor treatment plans to your needs.'
         ]
       },
 
       treatmentStrategy: {
-        title: "Our Treatment Strategy",
-        description: "We respect your time and provide thorough examination.",
+        title: 'Our Treatment Strategy',
+        description: 'We respect your time and provide thorough examination.',
         highlights: [
-          "Manual therapy and exercise programs",
-          "Modern diagnostic tools",
-          "Regular progress assessments"
+          'Manual therapy and exercise programs',
+          'Modern diagnostic tools',
+          'Regular progress assessments'
         ]
       },
 
       doctors: [
         {
-          id: "1",
-          name: "Dr. Your Name",
-          role: "Physiotherapist",
-          experience: "10+ Years",
-          bio: "Short bio.",
-          image: "images/doctors/doctor1.jpg"
+          id: '1',
+          name: 'Dr. Your Name',
+          role: 'Physiotherapist',
+          experience: '10+ Years',
+          bio: 'Short bio.',
+          image: 'images/doctors/doctor1.jpg'
         }
       ],
 
       services: {
-        physiotherapy: {
-          title: "Service",
-          description: "Description.",
-          link: "#"
+        physiotherapy: [{
+          title: 'Service',
+          description: 'Description.',
+          link: '#'
         },
         chiropractic: {
-          title: "Service",
-          description: "Description.",
-          link: "#"
-        }
+          title: 'Service',
+          description: 'Description.',
+          link: '#'
+        }]
       },
 
       equipment: [
         {
-          title: "Equipment",
-          description: "Description.",
-          image: "images/equipment/1.jpg"
+          title: 'Equipment',
+          description: 'Description.',
+          image: 'images/equipment/1.jpg'
         }
       ],
 
       reviews: [
         {
-          author: "Patient",
+          author: 'Patient',
           rating: 5,
-          text: "Excellent treatment.",
-          source: "Google Review"
+          text: 'Excellent treatment.',
+          source: 'Google Review'
         }
       ],
 
       locations: [
         {
-          name: "Main Branch",
-          address: "Your address",
-          phone: "Branch phone",
-          hours: "8 AM - 8 PM",
-          mapUrl: "https://www.google.com/maps",
-          image: "images/locations/1.jpg"
+          name: 'Main Branch',
+          address: 'Your address',
+          phone: 'Branch phone',
+          hours: '8 AM - 8 PM',
+          mapUrl: 'https://www.google.com/maps',
+          image: 'images/locations/1.jpg'
         }
       ],
 
       gallery: [
         {
-          src: "images/gallery/1.jpg",
-          alt: "Clinic"
+          src: 'images/gallery/1.jpg',
+          alt: 'Clinic'
         }
       ]
     };
 
     var STORAGE_KEY = "physio_clinic_config";
+
+    var data = null;
+
 function getData() {
   return data || fallback;
 }
@@ -180,8 +179,8 @@ function escapeHtml(s) {
 function renderServices() {
   var d = getData();
 
-  var physio = d.services ? d.services.physiotherapy || [] : [];
-  var chiro = d.services ? d.services.chiropractic || [] : [];
+  var physio = (d.services && d.services.physiotherapy) || [] : [];
+  var chiro = (d.services && d.services.chiropractic) || [] : [];
 
   var phEl = document.getElementById('services-physio');
   var chEl = document.getElementById('services-chiro');
@@ -247,8 +246,8 @@ function renderEquipment() {
 function renderServices() {
   var d = getData();
 
-  var physio = d.services ? d.services.physiotherapy || [] : [];
-  var chiro = d.services ? d.services.chiropractic || [] : [];
+  var physio = (d.services && d.services.physiotherapy) || [] : [];
+  var chiro = (d.services && d.services.chiropractic) || [] : [];
 
   var phEl = document.getElementById('services-physio');
   var chEl = document.getElementById('services-chiro');
@@ -471,26 +470,26 @@ function applyStaticContent() {
     }
   }
 
-  var aboutParas = (d.about || {}).paragraphs || [];
+  var aboutParas = (d.about && d.about.paragraphs) ? (Array.isArray(d.about.paragraphs) ? d.about.paragraphs : []) : [];
   var aboutContainer = document.getElementById('about-paragraphs');
 
   if (aboutContainer) {
     aboutContainer.innerHTML = aboutParas
       .map(function (p) {
-        return "<p>" + escapeHtml(p) + "</p>";
+        return '<p>' + escapeHtml(p) + '</p>';
       })
-      .join("");
+      .join('');
   }
 
-  var highlights = (d.treatmentStrategy || {}).highlights || [];
+  var highlights = (d.treatmentStrategy && d.treatmentStrategy.highlights) ? (Array.isArray(d.treatmentStrategy.highlights) ? d.treatmentStrategy.highlights : []) : [];
   var listEl = document.getElementById('strategy-list');
 
   if (listEl) {
     listEl.innerHTML = highlights
       .map(function (h) {
-        return "<li>" + escapeHtml(h) + "</li>";
+        return '<li>' + escapeHtml(h) + '</li>';
       })
-      .join("");
+      .join('');
   }
 }
 
@@ -560,6 +559,15 @@ function run() {
   initContactForm();
 }
 
+function tryRun() {
+    try {
+        run();
+    } catch (err) {
+        data = fallback;
+        try { run(); } catch (e) {}
+    }
+
+}
 // Load config: admin saves go to localStorage first,
 // otherwise load data/config.json
 try {
@@ -570,35 +578,15 @@ try {
 
     if (parsed && typeof parsed === 'object') {
       data = parsed;
-      run();
-    } else {
-      loadConfig();
+      tryRun();
+      return;
     }
-  } else {
-    loadConfig();
   }
 
-} catch (e) {
-  loadConfig();
-}
-
-function loadConfig() {
-  var configPath = 'data/config.json';
-
-  fetch(configPath)
-    .then(function (r) {
-      if (r.ok) {
-        return r.json();
-      } else {
-        return Promise.reject('Config load failed');
-      }
-    })
-    .then(function (json) {
-      data = json;
-      run();
-    })
-    .catch(function () {
-      data = fallback;
-      run();
-    });
+} catch (e) {}
+var configPath = 'data/config.json';
+fetch(configPath)
+    .then(function (r) {return r.ok ? r.json() : Promise.reject(); } )
+    .then(function (json) {data = json; tryRun(); } )
+    .catch(function () {data = fallback; tryRun(); } );
 }) ();

@@ -10,12 +10,10 @@ var config = null;
 /* ---------------- CONFIG ---------------- */
 
 function getConfig() {
-alert('in get');
     return config || {};
 }
 
 function loadConfig() {
-    alert('hi');
     return new Promise(function (resolve) {
         try {
             var stored = localStorage.getItem(STORAGE_KEY);
