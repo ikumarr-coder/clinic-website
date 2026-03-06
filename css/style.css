@@ -202,13 +202,13 @@ header {
 }
 
 /* Hero background image overlay */
-.hero-bg::after {
+/*.hero-bg::after {
   content: "";
   position: absolute;
   inset: 0;
   background: url("../images/hero-bg.jpg") center/cover no-repeat;
   opacity: 0.2;
-}
+}*/
 
 /* Hero inner content */
 .hero-inner {
