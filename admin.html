@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin – Clinic Settings</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen" class="screen">
+    <div class="login-box">
+        <h1>Admin Login</h1>
+        <p class="hint">Enter password to edit clinic details.</p>
+
+        <form id="login-form">
+            <label for="admin-password">Password</label>
+            <input type="password" id="admin-password" name="password"
+                   required placeholder="Password"
+                   autocomplete="current-password">
+            <button type="submit" class="btn btn-primary">Log in</button>
+        </form>
+
+        <p id="login-error" class="error" style="display:none;">
+            Wrong password.
+        </p>
+    </div>
+</div>
+
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel" class="screen" style="display:none;">
+
+    <header class="admin-header">
+        <div class="admin-header-inner">
+            <h1>Clinic Admin</h1>
+
+            <div class="admin-actions">
+                <a href="index.html" class="btn btn-outline" target="_blank">View site</a>
+                <button type="button" class="btn btn-outline" id="btn-download">Download config.json</button>
+                <button type="button" class="btn btn-primary" id="btn-save">Save changes</button>
+                <button type="button" class="btn btn-text" id="btn-logout">Log out</button>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="admin-main">
+        <form id="admin-form">
+
+
+            <!-- CLINIC INFO -->
+            <section class="form-section">
+                <h2>Clinic & Contact</h2>
+
+                <div class="form-grid">
+
+                    <label>
+                        Clinic name
+                        <input type="text" name="clinic.name" placeholder="Your Clinic Name">
+                    </label>
+
+                    <label>
+                        Tagline
+                        <input type="text" name="clinic.tagline" placeholder="Best Physiotherapy Center">
+                    </label>
+
+                    <label>
+                        Logo image path
+                        <input type="text" name="clinic.logo" placeholder="images/logo.png (or leave blank for text name)">
+                    </label>
+
+                    <label>
+                        Phone
+                        <input type="text" name="clinic.phone" placeholder="91999999999">
+                    </label>
+
+                    <label>
+                        Email
+                        <input type="email" name="clinic.email" placeholder="contact@clinic.com">
+                    </label>
+
+                    <label>
+                        WhatsApp (digits only)
+                        <input type="text" name="clinic.whatsapp" placeholder="919876543210">
+                    </label>
+
+                    <label>
+                        Address (one line)
+                        <input type="text" name="clinic.address" placeholder="Street, City, State">
+                    </label>
+
+                </div>
+            </section>
+
+
+
+            <!-- HERO -->
+            <section class="form-section">
+                <h2>Hero (top banner)</h2>
+
+                <div class="form-grid">
+
+                    <label>
+                        Title
+                        <input type="text" name="hero.title" placeholder="We Enhance Your Recovery">
+                    </label>
+
+                    <label>
+                        Subtitle
+                        <input type="text" name="hero.subtitle" placeholder="Active rehabilitation">
+                    </label>
+
+                    <label>
+                        Button text
+                        <input type="text" name="hero.ctaText" placeholder="Book Appointment">
+                    </label>
+
+                </div>
+            </section>
+
+
+
+            <!-- ABOUT -->
+            <section class="form-section">
+                <h2>About us</h2>
+
+                <div class="form-grid">
+
+                    <label>
+                        Section title
+                        <input type="text" name="about.title" placeholder="Welcome to Our Clinic">
+                    </label>
+
+                    <label>
+                        Intro line
+                        <input type="text" name="about.intro" placeholder="We believe in...">
+                    </label>
+
+                    <label>
+                        Paragraph 1
+                        <textarea name="about.paragraphs[0]" rows="2"></textarea>
+                    </label>
+
+                    <label>
+                        Paragraph 2
+                        <textarea name="about.paragraphs[1]" rows="2"></textarea>
+                    </label>
+
+                </div>
+            </section>
+
+
+
+            <!-- TREATMENT STRATEGY -->
+            <section class="form-section">
+                <h2>Treatment strategy</h2>
+
+                <div class="form-grid">
+
+                    <label>
+                        Title
+                        <input type="text" name="treatmentStrategy.title" placeholder="Our Treatment Strategy">
+                    </label>
+
+                    <label>
+                        Description
+                        <textarea name="treatmentStrategy.description" rows="3"></textarea>
+                    </label>
+
+                    <label>
+                        Highlight 1
+                        <input type="text" name="treatmentStrategy.highlights[0]">
+                    </label>
+
+                    <label>
+                        Highlight 2
+                        <input type="text" name="treatmentStrategy.highlights[1]">
+                    </label>
+
+                    <label>
+                        Highlight 3
+                        <input type="text" name="treatmentStrategy.highlights[2]">
+                    </label>
+
+                </div>
+            </section>
+
+
+
+            <!-- DOCTORS -->
+            <section class="form-section">
+                <h2>Doctors / Therapists</h2>
+                <p class="form-hint">
+                    Image path: e.g. images/doctors/dr1.jpg. Add the image file to the images/doctors/ folder.
+                </p>
+
+                <div id="doctors-list"></div>
+
+                <button type="button" class="btn btn-outline btn-sm" id="btn-add-doctor">
+                    + Add doctor
+                </button>
+
+            </section>
+
+
+
+            <!-- PHYSIOTHERAPY SERVICES -->
+            <section class="form-section">
+                <h2>Physiotherapy services</h2>
+
+                <div id="physio-list"></div>
+
+                <button type="button" class="btn btn-outline btn-sm" id="btn-add-physio">
+                    + Add service
+                </button>
+
+            </section>
+
+
+
+            <!-- CHIROPRACTIC -->
+            <section class="form-section">
+                <h2>Chiropractic services</h2>
+
+                <div id="chiro-list"></div>
+
+                <button type="button" class="btn btn-outline btn-sm" id="btn-add-chiro">
+                    + Add service
+                </button>
+
+            </section>
+
+
+
+            <!-- EQUIPMENT -->
+            <section class="form-section">
+                <h2>Equipment</h2>
+
+                <p class="form-hint">
+                    Image path: e.g. images/equipment/laser.jpg
+                </p>
+
+                <div id="equipment-list"></div>
+
+                <button type="button" class="btn btn-outline btn-sm" id="btn-add-equipment">
+                    + Add equipment
+                </button>
+
+            </section>
+
+
+
+            <!-- REVIEWS -->
+            <section class="form-section">
+                <h2>Reviews</h2>
+
+                <div id="reviews-list"></div>
+
+                <button type="button" class="btn btn-outline btn-sm" id="btn-add-review">
+                    + Add review
+                </button>
+
+            </section>
+
+
+
+            <!-- LOCATIONS -->
+            <section class="form-section">
+                <h2>Locations</h2>
+
+                <p class="form-hint">
+                    Image path: e.g. images/locations/branch1.jpg.
+                    Map URL: Google Maps link.
+                </p>
+
+                <div id="locations-list"></div>
+
+                <button type="button" class="btn btn-outline btn-sm" id="btn-add-location">
+                    + Add location
+                </button>
+
+            </section>
+
+
+
+            <!-- GALLERY -->
+            <section class="form-section">
+                <h2>Gallery</h2>
+
+                <p class="form-hint">
+                    Image path: e.g. images/gallery/1.jpg
+                </p>
+
+                <div id="gallery-list"></div>
+
+                <button type="button" class="btn btn-outline btn-sm" id="btn-add-gallery">
+                    + Add image
+                </button>
+
+            </section>
+
+
+
+            <!-- DEVELOPER -->
+            <section class="form-section">
+                <h2>Developer / Credits</h2>
+
+                <p class="form-hint">
+                    Name and contact of the developer(s) who built this site. Shown in the footer.
+                </p>
+
+                <div class="form-grid">
+
+                    <label>
+                        Developer name
+                        <input type="text" name="developer.name" placeholder="Developer Name">
+                    </label>
+
+                    <label>
+                        Email
+                        <input type="email" name="developer.email" placeholder="developer@example.com">
+                    </label>
+
+                    <label>
+                        Website (optional)
+                        <input type="url" name="developer.website" placeholder="https://">
+                    </label>
+
+                </div>
+            </section>
+
+
+
+            <!-- ADMIN PASSWORD -->
+            <section class="form-section">
+                <h2>Admin password</h2>
+
+                <p class="form-hint">
+                    Change the password used to access this admin page.
+                </p>
+
+                <label>
+                    New password
+                    <input type="password" name="adminPassword" placeholder="Leave blank to keep current">
+                </label>
+
+            </section>
+
+
+        </form>
+    </main>
+
+    <p id="save-status" class="save-status"></p>
+
+</div>
+
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>

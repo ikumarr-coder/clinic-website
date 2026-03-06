@@ -1,0 +1,162 @@
+{
+  "adminPassword": "admin123",
+
+  "developer": {
+    "name": "Developer Name",
+    "email": "developer@example.com",
+    "website": ""
+  },
+
+  "clinic": {
+    "name": "Your Clinic Name",
+    "tagLine": "Best Physiotherapy Center | Physiotherapy & Rehabilitation",
+    "logo": "",
+    "phone": "Your Phone Number",
+    "email": "your@email.com",
+    "whatsapp": "",
+    "address": "Your clinic address line",
+    "bookAppointmentUrl": "#contact"
+  },
+
+  "hero": {
+    "title": "We Enhance Your Recovery and Performance",
+    "subtitle": "Active rehabilitation and precise care. Beyond pain relief—improved function and performance.",
+    "ctaText": "Book Appointment"
+  },
+
+  "about": {
+    "title": "Welcome to Our Clinic",
+    "intro": "We believe in active rehabilitation and precise movement analysis to identify the real cause of your symptoms.",
+    "paragraphs": [
+      "Our goal is to take you beyond pain relief to improve and strengthen your overall function and performance.",
+      "Our physiotherapists use evidence-based practices and tailor treatment plans to your specific needs and goals."
+    ]
+  },
+
+  "treatmentStrategy": {
+    "title": "Our Treatment Strategy",
+    "description": "We respect your time. On your initial visit we take your health history, evaluate your condition, and give you a thorough examination in a private room to find the cause of your pain, then establish a unique treatment approach.",
+    "highlights": [
+      "Manual therapy, electrotherapy, and customized exercise programs",
+      "Modern diagnostic tools and assessment techniques",
+      "Regular progress assessments for optimal results"
+    ]
+  },
+
+  "doctors": [
+    {
+      "id": "1",
+      "name": "Dr. Your Name",
+      "role": "Founder, Physiotherapist",
+      "experience": "15+ Years",
+      "bio": "Short bio for your lead therapist.",
+      "image": "images/doctors/doctor1.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Dr. Second Name",
+      "role": "Physiotherapist",
+      "experience": "10+ Years",
+      "bio": "Specialist in orthopaedic and sports rehabilitation.",
+      "image": "images/doctors/doctor2.jpg"
+    }
+  ],
+
+  "services": {
+    "physiotherapy": [
+      {
+        "title": "Robotic MLS High Power LASER",
+        "description": "Pain reduction and accelerated tissue repair.",
+        "link": "#"
+      },
+      {
+        "title": "Spinal Decompression",
+        "description": "Non-invasive spinal decompression for herniated discs.",
+        "link": "#"
+      },
+      {
+        "title": "Shock Wave Therapy",
+        "description": "Shock waves for musculoskeletal conditions.",
+        "link": "#"
+      },
+      {
+        "title": "Ultrasound Therapy",
+        "description": "Therapeutic ultrasound for tissue healing.",
+        "link": "#"
+      },
+      {
+        "title": "Manual Therapy",
+        "description": "Hands-on manipulation to restore movement.",
+        "link": "#"
+      }
+    ],
+
+    "chiropractic": [
+      {
+        "title": "Chiropractic & Osteopathy",
+        "description": "Spinal and joint care.",
+        "link": "#"
+      },
+      {
+        "title": "Cupping Therapy",
+        "description": "Suction therapy for muscle tension.",
+        "link": "#"
+      },
+      {
+        "title": "Posture Correction",
+        "description": "Assessment and correction of posture.",
+        "link": "#"
+      }
+    ]
+  },
+
+  "equipment": [
+    {
+      "title": "Robotic Laser Therapy",
+      "description": "Precise laser delivery to deep tissues.",
+      "image": "images/equipment/laser.jpg"
+    },
+    {
+      "title": "Shock Wave Therapy",
+      "description": "Acoustic shock waves for natural healing.",
+      "image": "images/equipment/shockwave.jpg"
+    }
+  ],
+
+  "reviews": [
+    {
+      "author": "Patient Name",
+      "rating": 5,
+      "text": "Excellent treatment and professional staff.",
+      "source": "Google Review"
+    },
+    {
+      "author": "Another Patient",
+      "rating": 5,
+      "text": "Clean clinic and effective treatment. Highly recommend.",
+      "source": "Google Review"
+    }
+  ],
+
+  "locations": [
+    {
+      "name": "Main Branch",
+      "address": "Your full address here",
+      "phone": "Branch phone number",
+      "hours": "8:00 AM - 8:00 PM",
+      "mapUrl": "https://www.google.com/maps",
+      "image": "images/locations/branch1.jpg"
+    }
+  ],
+
+  "gallery": [
+    {
+      "src": "images/gallery/1.jpg",
+      "alt": "Clinic interior"
+    },
+    {
+      "src": "images/gallery/2.jpg",
+      "alt": "Treatment room"
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physiotherapy Clinic | Best Physiotherapy Center</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+
+        <a href="#" class="logo-wrap">
+            <img class="logo-img" id="logo-img" src="" alt="" style="display:none;">
+            <span class="logo" id="clinic-name">Raj Physiotherapy Clinic</span>
+        </a>
+
+        <nav class="nav" aria-label="Main">
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"></button>
+
+            <ul class="nav-list">
+                <li><a href="#about">About</a></li>
+                <li><a href="#doctors">Doctors</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#locations">Locations</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-cta">
+            <a href="tel:" id="header-phone" class="link-phone">Phone</a>
+            <a href="#contact" class="btn btn-primary" id="btn-book">Book Appointment</a>
+        </div>
+
+    </div>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+
+        <div class="container hero-inner">
+            <h1 class="hero-title" id="hero-title">
+                Enhance Your Recovery and Performance
+            </h1>
+
+            <p class="hero-subtitle" id="hero-subtitle">
+                Active rehabilitation. Beyond pain relief—improved function and performance.
+            </p>
+
+            <a href="#contact" class="btn btn-primary btn-lg" id="hero-cta">
+                Book Appointment
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about" class="section about">
+        <div class="container">
+
+            <h2 class="section-title" id="about-title">Welcome to Our Clinic</h2>
+
+            <div class="about-content">
+                <p class="lead" id="about-intro">
+                    We believe in active rehabilitation and precise movement analysis.
+                </p>
+
+                <p id="about-paragraph"></p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- STRATEGY -->
+    <section class="section strategy">
+        <div class="container">
+
+            <h2 class="section-title" id="strategy-title">
+                Our Treatment Strategy
+            </h2>
+
+            <p class="strategy-desc" id="strategy-desc"></p>
+
+            <ul class="strategy-list" id="strategy-list"></ul>
+
+        </div>
+    </section>
+
+
+    <!-- DOCTORS -->
+    <section id="doctors" class="section doctors">
+        <div class="container">
+
+            <h2 class="section-title">
+                Our Therapists
+            </h2>
+
+            <div class="doctors-grid" id="doctors-grid"></div>
+
+        </div>
+    </section>
+
+
+    <!-- SERVICES -->
+    <section id="services" class="section services">
+        <div class="container">
+
+            <h2 class="section-title">Physiotherapy</h2>
+            <div class="services-grid" id="services-physio"></div>
+
+            <h2 class="section-title section-title-sub">Chiropractic Care</h2>
+            <div class="services-grid" id="services-chiro"></div>
+
+        </div>
+    </section>
+
+
+    <!-- EQUIPMENT -->
+    <section class="section equipment">
+        <div class="container">
+
+            <h2 class="section-title">
+                Our Equipment
+            </h2>
+
+            <div class="equipment-grid" id="equipment-grid"></div>
+
+        </div>
+    </section>
+
+
+    <!-- GALLERY -->
+    <section class="section gallery-section">
+        <div class="container">
+
+            <h2 class="section-title">
+                Gallery
+            </h2>
+
+            <div class="gallery-grid" id="gallery-grid"></div>
+
+        </div>
+    </section>
+
+
+    <!-- LOCATIONS -->
+    <section id="locations" class="section locations">
+        <div class="container">
+
+            <h2 class="section-title">
+                Our Locations
+            </h2>
+
+            <p class="locations-intro">
+                Trusted physiotherapy & chiropractic care near you
+            </p>
+
+            <div class="locations-grid" id="locations-grid"></div>
+
+        </div>
+    </section>
+
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="section reviews">
+        <div class="container">
+
+            <h2 class="section-title">
+                Google Reviews
+            </h2>
+
+            <p class="reviews-intro">
+                Rated <span class="stars">★★★★★</span> by our patients
+            </p>
+
+            <div class="reviews-slider" id="reviews-container"></div>
+
+        </div>
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+        <div class="container">
+
+            <h2 class="section-title">
+                Get in Touch
+            </h2>
+
+            <p class="contact-intro">
+                Feel free to drop us a message
+            </p>
+
+            <div class="contact-grid">
+
+                <div class="contact-info">
+                    <p><strong>Phone</strong> <a href="tel:" id="contact-phone"></a></p>
+                    <p><strong>Email</strong> <a href="mailto:" id="contact-email"></a></p>
+                    <p><strong>WhatsApp</strong> <a href="#" id="contact-whatsapp" target="_blank" rel="noopener">Chat</a></p>
+                </div>
+
+                <form class="contact-form" id="contact-form" action="#" method="get">
+
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+<footer class="footer">
+    <div class="container">
+
+        <p class="footer-name" id="footer-name">
+            Physiotherapy Clinics
+        </p>
+
+        <p>
+            © <span id="year"></span> All rights reserved.
+        </p>
+
+        <p class="footer-developer">
+            Developed by <span id="developer-credit">Indu Kumar Reddy</span>
+        </p>
+
+        <p class="admin-link">
+            <a href="admin.html">Admin</a>
+        </p>
+
+    </div>
+</footer>
+
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
