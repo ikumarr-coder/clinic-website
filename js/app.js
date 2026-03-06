@@ -22,7 +22,7 @@
       if (path.startsWith('http')) return path;
 
       // Find the script that loaded app.js
-      const script = document.querySelector('script[src*="app.js"]');
+      const scriptEl = document.querySelector('script[src*="app.js"]');
       const base = (scriptEl && scriptEl.src) ? scriptEl.src.replace(/\/js\/app\.js.*$/, '') : '' ;
 
       return base ? base + '/'+path.replace(/^\//,'') : path;
@@ -38,12 +38,13 @@
       },
 
       clinic: {
-        name: 'Your Clinic Name'"',
+        name: 'Your Clinic Name',
         phone: 'Your Phone',
         email: 'your@email.com',
         whatsapp: '',
         address: '',
-        logo: ''},
+        logo: ''
+        },
         hero: {
           title: 'We Enhance Your Recovery and Performance',
           subtitle: 'Active rehabilitation. Beyond pain relief.',
@@ -85,8 +86,8 @@
           title: 'Service',
           description: 'Description.',
           link: '#'
-        },
-        chiropractic: {
+        }],
+        chiropractic: [{
           title: 'Service',
           description: 'Description.',
           link: '#'
